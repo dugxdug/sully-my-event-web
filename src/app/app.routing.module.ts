@@ -26,14 +26,11 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
-    children: [
-      {
-        path: '',
-        component: CreateUserComponent,
-        pathMatch: 'full',
-      }
-    ]
+    component: LoginComponent
+  },
+  {
+    path: 'create',
+    component: CreateUserComponent,
   }
 ];
 

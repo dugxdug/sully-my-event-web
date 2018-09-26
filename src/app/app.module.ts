@@ -25,6 +25,7 @@ import { CalendarModule } from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputTextModule} from 'primeng/inputtext';
 import {StepsModule} from 'primeng/steps';
+import { CreateUserComponent } from 'src/app/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {StepsModule} from 'primeng/steps';
     MainComponent,
     DashboardComponent,
     LoginComponent,
-    EventComponent
+    EventComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

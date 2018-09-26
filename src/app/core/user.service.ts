@@ -12,4 +12,8 @@ export class UserService {
     logUserIn(user: UserModel): Observable<number> {
         return this.http.post<number>(`https://localhost:44353/v1/login`, user);
     }
+
+    createUser(user: UserModel): Observable<any> {
+        return this.http.post<number>(`https://localhost:44353/v1/users`, user);
+    }
 }
