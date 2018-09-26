@@ -11,6 +11,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpHelperService } from './core/http-helper.service';
+import { PollComponent } from './poll/poll.component';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+import { EventsService } from './core/events.service';
 
 @NgModule({
   declarations: [
@@ -18,15 +22,18 @@ import { HttpHelperService } from './core/http-helper.service';
     NavComponent,
     MainComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    PollComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule,
+    ButtonModule
   ],
-  providers: [YelpService, HttpHelperService],
+  providers: [YelpService, HttpHelperService, EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

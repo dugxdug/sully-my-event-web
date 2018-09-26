@@ -1,0 +1,25 @@
+<div class="text-center mt-5">
+<h2>Please Choose What You Would Like To Eat...</h2>
+</div>
+<div class="p-grid p-justify-center m-5">
+  <div class="p-col-12 p-md-6 p-lg-4 p-xl-3" *ngFor="let event of this.events | async">
+    <p-card>
+      <p-header>
+        <img src="{{event.imgUrl}}"/>
+      </p-header>
+      <div class="mb-5" style="min-height: 100px">
+        <div class="ui-card-title float-left"><a class="primary-title" href="{{event.url}}" target="_blank">{{event.name}}</a></div>
+        <div class="event-price">{{event.price}}</div>
+        <div class="clearfix"></div>
+        <div class="ui-card-subtitle h-25">
+            {{event.address}}
+        </div>
+      </div>
+      <p-footer>
+            <div class="text-center">
+                <p-button icon="pi pi-check" label="Vote" styleClass="ui-button-success"></p-button>
+            </div>
+      </p-footer>
+    </p-card>
+  </div>
+</div>

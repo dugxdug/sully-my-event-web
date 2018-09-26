@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/scss/bootstrap';
 @import './colors';
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+.primary-title {
+  color: #79B791 !important;
+}
+.clearfix {
+  clear: both;
+}
