@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { YelpService } from './core/yelp.service';
+import { LocationFilter } from './models/location-filter.model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor() {
+  }
 }

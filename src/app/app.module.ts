@@ -9,6 +9,8 @@ import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from './app.routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpHelperService } from './core/http-helper.service';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,10 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [YelpService],
+  providers: [YelpService, HttpHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
