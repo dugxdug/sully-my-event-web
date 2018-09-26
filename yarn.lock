@@ -91,7 +91,7 @@
     "@angular-devkit/core" "0.6.8"
     rxjs "^6.0.0"
 
-"@angular/animations@^6.0.2":
+"@angular/animations@^6.1.8":
   version "6.1.8"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-6.1.8.tgz#a1861c7f63aca5bd18ba48e0c736ee7b1f2dac36"
   dependencies:
@@ -4566,6 +4566,14 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
+
+primeicons@^1.0.0-beta.10:
+  version "1.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-1.0.0-beta.10.tgz#b1a27a8a279c0b28d4bd537a29709b39cfebbd9f"
+
+primeng@^6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-6.1.4.tgz#c4b92c1c9f8ba6cf717b122ed87c3701a5e1cf20"
 
 process-nextick-args@~1.0.6:
   version "1.0.7"
