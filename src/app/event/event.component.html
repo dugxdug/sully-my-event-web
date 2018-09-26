@@ -8,6 +8,10 @@
     <button type="button" class="btn btn-primary" (click)="activeIndex = 1">Next</button>
 </div>
 <div [hidden]="activeIndex !== 1">
+    <div>Price Range: <p-multiSelect [options]="prices" [(ngModel)]="selectedPrices"></p-multiSelect></div>
+    <div>Radius (mi): <input type="text" pInputText [(ngModel)]="radius"/></div>
+    <div>Location: <input type="text" pInputText [(ngModel)]="location"/></div>  
+    <div>Rating: <p-multiSelect [options]="stars" [(ngModel)]="selectedStars"></p-multiSelect></div>   
     <button type="button" class="btn btn-primary" (click)="activeIndex = 2">Next</button>
 </div>    
 <div [hidden]="activeIndex !== 2">
