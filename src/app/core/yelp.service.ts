@@ -11,18 +11,16 @@ export class YelpService {
 
   constructor(private http: HttpClient, private httpHelper: HttpHelperService) {}
 
-  searchBusiness(filters: LocationFilter): Observable<YelpResults> {
+  searchBusinesses(filters: LocationFilter): Observable<YelpResults> {
     const options = {};
     if (filters) {
       options['params'] = this.httpHelper.buildParams(filters);
     }
-    options['headers'] = new HttpHeaders().set('Authorization', `bearer ${environment.yelpApiKey}`);
-    return this.http.get<YelpResults>(`${environment.yelpApiBaseUrl}/businesses/search`, options);
+    return this.http.get<YelpResults>(`${environment.ApiBaseUrl}/yelp-search`,
+    options);
   }
 
   getBusiness(id: number): Observable<YelpResult> {
-    const options = {};
-    options['headers'] = new HttpHeaders().set('Authorization', `bearer ${environment.yelpApiKey}`);
-    return this.http.get<YelpResult>(`${environment.yelpApiBaseUrl}/businesses/${id}`, options);
+    return this.http.get<YelpResult>(`${environment.ApiBaseUrl}/yelp-search/${id}`);
   }
 }

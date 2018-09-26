@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  yelpApiKey: 'fBC3_rQ99_-dUBF_GTCxLX3VMBdMAqKvD4CRq5wNIdhrfpyHyeqfGiSUUBpDxNRBuXBAam2IHYcVwbGAl0ebpu'
-  + '_quYPdCKlzQeWhnSfM6qzqZMVzWZUFxfVqd5urW3Yx',
-  yelpApiBaseUrl: 'https://api.yelp.com/v3'
+  ApiBaseUrl: 'https://localhost:44353/v1'
 };
 
 /*
