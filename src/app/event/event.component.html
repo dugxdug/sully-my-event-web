@@ -1,0 +1,15 @@
+<h3 class="first">Create Event</h3>
+<p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+<div [hidden]="activeIndex !== 0">
+    <div>Users: <p-multiSelect [options]="users" [(ngModel)]="selectedUsers"></p-multiSelect></div>   
+    <div>Date/Time: <p-calendar [(ngModel)]="date" [showTime]="true"></p-calendar></div>
+    <div>Title: <input type="text" pInputText [(ngModel)]="title"/></div>
+    <div>Description: <textarea pInputTextarea [(ngModel)]="description"></textarea></div>
+    <button type="button" class="btn btn-primary" (click)="activeIndex = 1">Next</button>
+</div>
+<div [hidden]="activeIndex !== 1">
+    <button type="button" class="btn btn-primary" (click)="activeIndex = 2">Next</button>
+</div>    
+<div [hidden]="activeIndex !== 2">
+    <button type="button" class="btn btn-primary" (click)="save()">Finish</button>
+</div>   

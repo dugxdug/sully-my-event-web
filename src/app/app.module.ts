@@ -11,6 +11,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpHelperService } from './core/http-helper.service';
+import { EventComponent } from './event/event.component';
+import { AccordionModule } from 'primeng/primeng';
+import {MultiSelectModule} from 'primeng/multiselect';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputTextModule} from 'primeng/inputtext';
+import {StepsModule} from 'primeng/steps';
 
 @NgModule({
   declarations: [
@@ -18,13 +26,21 @@ import { HttpHelperService } from './core/http-helper.service';
     NavComponent,
     MainComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AccordionModule,
+    MultiSelectModule,
+    FormsModule,
+    CalendarModule,
+    InputTextareaModule,
+    InputTextModule,
+    StepsModule
   ],
   providers: [YelpService, HttpHelperService],
   bootstrap: [AppComponent]
