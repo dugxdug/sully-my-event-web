@@ -4,6 +4,8 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PollComponent } from './poll/poll.component';
+import { EventComponent } from './event/event.component';
+import { CreateUserComponent } from 'src/app/create-user/create-user.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,11 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
         pathMatch: 'full',
+      },
+      {
+        path: 'event',
+        component: EventComponent,
+        pathMatch: 'full'
       }
     ]
   },
@@ -26,6 +33,10 @@ const routes: Routes = [
     path: 'events/:id/poll',
     component: PollComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'create',
+    component: CreateUserComponent,
   }
 ];
 

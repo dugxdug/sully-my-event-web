@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import './colors';
 
+<<<<<<< HEAD
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -10,4 +11,44 @@ body {
 }
 .clearfix {
   clear: both;
+=======
+
+.bg-light  {
+    background-color: #435058 !important;
+    color: #fff !important;
+}
+.ui-steps .ui-steps-item {
+  width: 33%;
+}
+
+.ui-steps.steps-custom {
+  margin-bottom: 30px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-menuitem-link {
+  height: 10px;
+  padding: 0 1em;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+  background-color: #0081c2;
+  color: #FFFFFF;
+  display: inline-block;
+  width: 36px;
+  border-radius: 50%;
+  margin-top: -14px;
+  margin-bottom: 10px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+  color: #555555;
+}
+
+.background-dark {
+    background-color: $background-dark;
+}
+
+.background-light {
+    background-color: $background-light;
+>>>>>>> 9104f340214a1953221608def3a9e2f62e48f478
 }
