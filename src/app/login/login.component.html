@@ -1,3 +1,32 @@
-<p>
-  login works!
-</p>
+<div class="container background-dark">
+  <div class="card-container">
+    <p-card [style]="{width: '100%', height: '100%'}" styleClass="ui-card-shadow">
+      <form [formGroup]="formGroup">
+          <h5>Welcome!</h5>
+          <div class="form-group">
+            <label for="Email"><span>UserName</span></label>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="icon ion-md-person"></i></span>
+                <input type="text" id="Email" name="Email" formControlName="Email" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Password"><span>Password</span></label>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="icon ion-md-lock"></i></span>
+                <input type="password" pPassword id="Password" name="Password" formControlName="Password" />
+            </div>
+          </div>
+          <div class="form-group d-flex justify-content-center">
+            <button type="submit" class="button button-primary" (click)="AttemptLogin()">Login</button>
+          </div>
+      </form>
+      <p>
+        Don't have an account?
+        <a [routerLink]="['/users']">
+          Create One!
+        </a>
+      </p>
+    </p-card>
+  </div>
+</div>
