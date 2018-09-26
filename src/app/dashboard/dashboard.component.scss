@@ -1,0 +1,15 @@
+.top-shelf-grey {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e6e6e6;
+}
+.top-shelf {
+    width: 100%;
+    min-width: 1020px;
+    position: relative;
+    padding-top: 15px;
+}
+
+.card-img-top {
+  max-height: 250px;
+  object-fit: contain;
+}
