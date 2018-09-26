@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { YelpService } from './core/yelp.service';
 import { NavComponent } from './nav/nav.component';
 import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -22,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [YelpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
