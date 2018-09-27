@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PollComponent } from './poll/poll.component';
 import { EventComponent } from './event/event.component';
 import { CreateUserComponent } from 'src/app/create-user/create-user.component';
 
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'events/:id/poll',
+    component: PollComponent,
+    pathMatch: 'full'
   },
   {
     path: 'create',
