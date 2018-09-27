@@ -5,7 +5,7 @@
   <div class="p-col-12 p-md-6 p-lg-4 p-xl-3" *ngFor="let event of this.eventLocations">
     <p-card>
       <p-header>
-        <img [src]="event.imageUrl" style="max-height: 300px;"/>
+        <img [src]="event.imageUrl" style="height: 300px; object-fit: cover;"/>
       </p-header>
       <div class="mb-5" style="min-height: 100px">
         <div class="ui-card-title float-left"><a class="primary-title" href="{{event.url}}" target="_blank">{{event.name}}</a></div>
@@ -27,13 +27,13 @@
     <img src="../../assets/logo.png" height="300px" class="mb-5">
     <h2>Looks like you already voted.</h2>
     <p>
-      <a [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a> 
+      <a [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a>
     </p>
 </div>
 <div *ngIf="this.closedPoll" class="text-center mt-5">
     <img src="../../assets/logo.png" height="300px" class="mb-5">
     <h2>Oops...Looks like this poll already closed :(</h2>
     <p>
-      <a class="primary-title" [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a> 
+      <a class="primary-title" [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a>
     </p>
 </div>
