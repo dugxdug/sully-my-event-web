@@ -81,9 +81,6 @@ export class EventComponent implements OnInit {
     this.selectedUsers.forEach((x) => {
       this.eventUsers.push({userId: x});
     });
-    if (!this.eventUsers.includes({userId: +localStorage.getItem('userId')})) {
-      this.eventUsers.push({userId: +localStorage.getItem('userId')});
-    }
     const event = {
       title: this.title,
       description: this.description,
