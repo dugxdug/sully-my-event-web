@@ -6,10 +6,10 @@
       <a routerLink="/event"><button class="btn btn-primary float-sm-right">Sully Sully</button></a>
       <h1 class="display-4 py-3">Next Event</h1>
       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-        <img class="card-img-left flex-auto d-none d-lg-block" [src]="nextEvent.imageUrl ? nextEvent.imageUrl : './assets/logo.png'">
+        <img class="card-img-left flex-auto d-none d-lg-block" [src]="nextEvent.imageUrl ? nextEvent.imageUrl : './assets/not_voted2.png'">
         <div class="card-body d-flex flex-column align-items-start">
           <h3 class="mb-1">
-            <a class="text-dark" href="#">{{nextEvent.title}}</a>
+            <a class="text-dark" [routerLink]="['./events', nextEvent.id, 'poll']">{{nextEvent.title}}</a>
           </h3>
           <div class="mb-2 text-muted">{{nextEvent.eventTime | date:'short'}}</div>
           <p class="card-text mb-auto">{{nextEvent.description}}</p>
@@ -25,11 +25,14 @@
       <div class="p-grid">
         <div class="p-col-3" *ngFor="let event of events">
           <div class="card">
-            <img class="card-img-top" [src]="event.imageUrl ? event.imageUrl : './assets/logo.png'" alt="Card image cap">
+            <img class="card-img-top" [src]="event.imageUrl ? event.imageUrl : './assets/not_voted2.png'" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{event.title}}</h5>
+              <h4 class="mb-1">
+                <a class="text-dark" [routerLink]="['./events', event.id, 'poll']">{{event.title}}</a>
+              </h4>
+              <div class="mb-2 text-muted">{{event.eventTime | date:'short'}}</div>
               <p class="card-text">{{event.description}}</p>
-              <p class="card-text"><small class="text-muted">{{event.eventTime}}</small></p>
+              <p class="card-text"><small class="text-muted">Event in {{event.countDown}} days!</small></p>
             </div>
           </div>
         </div>
