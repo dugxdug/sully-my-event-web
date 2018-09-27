@@ -22,17 +22,17 @@ const routes: Routes = [
         path: 'event',
         component: EventComponent,
         pathMatch: 'full'
-      }
+      },
+      {
+        path: 'events/:id/poll',
+        component: PollComponent,
+        pathMatch: 'full'
+      },
     ]
   },
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'events/:id/poll',
-    component: PollComponent,
-    pathMatch: 'full'
   },
   {
     path: 'create',
