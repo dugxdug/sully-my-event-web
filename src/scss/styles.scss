@@ -70,3 +70,12 @@ body {
   background-color:  #79B791 !important;
   border-color:  #79B791!important;
 }
+
+body .ui-toast .ui-toast-message.ui-toast-message-success {
+  background-color: #79B791 !important;
+  color: white !important;
+}
+
+body .ui-toast .ui-toast-message.ui-toast-message-success .ui-toast-close-icon {
+  color: white !important;
+}
