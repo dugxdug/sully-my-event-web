@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MenuItem } from 'primeng/primeng';
 import { YelpService } from '../core/yelp.service';
 import { LocationFilter } from '../models/location-filter.model';
-import { YelpResult } from '../models/yelp-results.model';
+import { YelpResult, YelpResults } from '../models/yelp-results.model';
 
 @Component({
   selector: 'app-event',
@@ -39,8 +39,7 @@ export class EventComponent implements OnInit {
       { label: '$', value: 1},
       { label: '$$ ', value: 2},
       { label: '$$$ ', value: 3},
-      { label: '$$$$ ', value: 4},
-      { label: '$$$$$ ', value: 5}
+      { label: '$$$$ ', value: 4}
     ];
 
     this.stars = [

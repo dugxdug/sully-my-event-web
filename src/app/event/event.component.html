@@ -16,9 +16,16 @@
     <button type="button" class="btn btn-primary" (click)="getRestaurants();">Next</button>
 </div>    
 <div [hidden]="activeIndex !== 2">
-    <div *ngFor="let result of restaurantResults?.businesses">
-        <div>
-            {{result.name}}, {{result.price}}, {{result.rating}}
+    <div class="p-grid p-justify-center mt-0">
+        <div class="p-col-3" *ngFor="let result of restaurantResults?.businesses">
+            <div class="card">
+            <img class="card-img-top" style="object-fit: cover; height: 200px" [src]="result.image_url" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{result.name}}</h5>
+                <p class="card-text">Price: {{result.price}}</p>
+                <p class="card-text">Rating: {{result.rating}}</p>
+            </div>
+            </div>
         </div>
     </div>
     <button type="button" class="btn btn-secondary" (click)="activeIndex = 1">Previous</button> 
