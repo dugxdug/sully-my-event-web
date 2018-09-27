@@ -52,26 +52,26 @@ export class EventComponent implements OnInit {
     });
 
     this.prices = [
-      { label: '$', value: 1},
-      { label: '$$ ', value: 2},
-      { label: '$$$ ', value: 3},
-      { label: '$$$$ ', value: 4}
+      { label: '$', value: 1 },
+      { label: '$$ ', value: 2 },
+      { label: '$$$ ', value: 3 },
+      { label: '$$$$ ', value: 4 }
     ];
 
     this.stars = [
-      { label: '*', value: 1},
-      { label: '** ', value: 2},
-      { label: '***', value: 3},
-      { label: '**** ', value: 4},
-      { label: '***** ', value: 5}
+      { label: '*', value: 1 },
+      { label: '** ', value: 2 },
+      { label: '***', value: 3 },
+      { label: '**** ', value: 4 },
+      { label: '***** ', value: 5 }
     ];
 
 
     this.items = [
-      {label: 'Event Details'},
-      {label: 'Restaurant Criteria'},
-      {label: 'Restaurant Selections'}
-  ];
+      { label: 'Event Details' },
+      { label: 'Restaurant Criteria' },
+      { label: 'Restaurant Selections' }
+    ];
   }
 
   openNext() {
@@ -80,7 +80,7 @@ export class EventComponent implements OnInit {
 
   save() {
     this.selectedUsers.forEach((x) => {
-      this.eventUsers.push({userId: x});
+      this.eventUsers.push({ userId: x });
     });
     const event = {
       title: this.title,
@@ -102,9 +102,14 @@ export class EventComponent implements OnInit {
   getRestaurants() {
     const filterData = new LocationFilter(this.location, this.selectedPrices.join(), Math.floor(this.radius / .00062137), this.searchTerm);
     this.yelpService.searchBusinesses(filterData).subscribe((results) => {
-      const filteredResults = results.businesses.filter(x => this.selectedStars.includes(Math.floor(x.rating)));
-      results.businesses = filteredResults;
-      this.restaurantResults = results;
+      console.log(this.selectedStars);
+      if (this.selectedStars.length > 0) {
+        const filteredResults = results.businesses.filter(x => this.selectedStars.includes(Math.floor(x.rating)));
+        results.businesses = filteredResults;
+        this.restaurantResults = results;
+      } else {
+        this.restaurantResults = results;
+      }
       this.activeIndex = 2;
     });
   }
@@ -113,7 +118,7 @@ export class EventComponent implements OnInit {
     if (!this.eventLocations.find(x => x.yelpId === result.id)) {
       this.eventLocations.push(
         new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
-        console.log(this.eventLocations);
+      console.log(this.eventLocations);
     }
 
     if (this.selectedCards.find(x => x === result.id)) {
