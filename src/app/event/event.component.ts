@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem, MenuItem } from 'primeng/primeng';
+import { SelectItem, MenuItem, MessageService } from 'primeng/primeng';
 import { YelpService } from '../core/yelp.service';
 import { LocationFilter } from '../models/location-filter.model';
 import { YelpResult, YelpResults } from '../models/yelp-results.model';
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  styleUrls: ['./event.component.scss'],
+  providers: [MessageService]
 })
 export class EventComponent implements OnInit {
   users = Array<SelectItem>();
@@ -37,7 +38,8 @@ export class EventComponent implements OnInit {
   constructor(private yelpService: YelpService,
     private userService: UserService,
     private eventService: EventsService,
-    private router: Router) { }
+    private router: Router,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe((userList) => {
@@ -51,26 +53,26 @@ export class EventComponent implements OnInit {
     });
 
     this.prices = [
-      { label: '$', value: 1},
-      { label: '$$ ', value: 2},
-      { label: '$$$ ', value: 3},
-      { label: '$$$$ ', value: 4}
+      { label: '$', value: 1 },
+      { label: '$$ ', value: 2 },
+      { label: '$$$ ', value: 3 },
+      { label: '$$$$ ', value: 4 }
     ];
 
     this.stars = [
-      { label: '*', value: 1},
-      { label: '** ', value: 2},
-      { label: '***', value: 3},
-      { label: '**** ', value: 4},
-      { label: '***** ', value: 5}
+      { label: '*', value: 1 },
+      { label: '** ', value: 2 },
+      { label: '***', value: 3 },
+      { label: '**** ', value: 4 },
+      { label: '***** ', value: 5 }
     ];
 
 
     this.items = [
-      {label: 'Event Details'},
-      {label: 'Restaurant Criteria'},
-      {label: 'Restaurant Selections'}
-  ];
+      { label: 'Event Details' },
+      { label: 'Restaurant Criteria' },
+      { label: 'Restaurant Selections' }
+    ];
   }
 
   openNext() {
@@ -79,7 +81,7 @@ export class EventComponent implements OnInit {
 
   save() {
     this.selectedUsers.forEach((x) => {
-      this.eventUsers.push({userId: x});
+      this.eventUsers.push({ userId: x });
     });
     const event = {
       title: this.title,
@@ -102,18 +104,40 @@ export class EventComponent implements OnInit {
       this.activeIndex = 2;
     });
   }
+  previous(index: number) {
+    this.selectedCards = [];
+    this.eventLocations = [];
+    this.activeIndex = index;
+  }
 
   cardClicked(result: any) {
-    if (!this.eventLocations.find(x => x.yelpId === result.id)) {
-      this.eventLocations.push(
-        new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
-        console.log(this.eventLocations);
+      if (!this.eventLocations.find(x => x.yelpId === result.id)) {
+        if (this.eventLocations.length < 8) {
+        this.eventLocations.push(
+          new SelectedLocation(
+            result.id,
+            result.price,
+            result.rating,
+            result.name,
+            result.location.address1,
+            result.image_url,
+            result.url));
+      }
     }
+      if (this.selectedCards.find(x => x === result.id)) {
+        this.selectedCards.splice(this.selectedCards.findIndex(x => x === result.id));
+      } else {
+        if (this.selectedCards.length < 8) {
+        this.selectedCards.push(result.id);
+        } else {
+          this.messageService.add(
+            {
+              severity: 'error',
+              summary: 'Limit of 5 options',
+              detail: 'You can only select a maximum of 5 options.'
+            });
+        }
+      }
 
-    if (this.selectedCards.find(x => x === result.id)) {
-      this.selectedCards.splice(this.selectedCards.findIndex(x => x === result.id));
-    } else {
-      this.selectedCards.push(result.id);
-    }
   }
 }

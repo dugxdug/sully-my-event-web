@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}" position="top-right"></p-toast>
 <div class="container" style="height: 100%">
   <h3 class="first">Create Event</h3>
   <a class="primary-title" [routerLink]="['../']" routerLinkActive="router-link-active" ><i style="font-size: small" class="pi pi-chevron-left"></i>Back to Dashboard</a>
@@ -35,7 +36,7 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="activeIndex = 1">Previous</button>
+    <button type="button" class="btn btn-secondary" (click)="previous(1)">Previous</button>
     <button type="button" class="btn btn-primary" (click)="save()">Finish</button>
   </div>
 </div>
