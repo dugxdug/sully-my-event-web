@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userId = this.coreService.getLoggedInUserId();
     this.eventsService.getEvents(this.userId).subscribe(events => {
+      console.log(events);
       events.map(e => {
         e.countDown = this.getDateCountdown(e.eventTime);
       });

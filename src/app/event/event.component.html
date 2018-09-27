@@ -26,7 +26,7 @@
     <div class="p-grid p-justify-center mt-0">
       <div class="p-col-3" *ngFor="let result of restaurantResults?.businesses">
         <div class="card" (click)="cardClicked(result)" [class.card-selected]="selectedCards.includes(result.id)">
-          <img class="card-img-top" style="object-fit: cover; height: 200px" [src]="result.image_url" alt="Card image cap">
+          <img class="card-img-top" [src]="result.image_url" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{result.name}}</h5>
             <p class="card-text">Price: {{result.price}}</p>
