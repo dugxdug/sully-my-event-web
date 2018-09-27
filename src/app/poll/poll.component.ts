@@ -18,16 +18,25 @@ export class PollComponent implements OnInit {
     private coreService: CoreService,
     private route: ActivatedRoute,
     private router: Router) { }
-
+  eventCreator: string;
   eventLocations: Observable<any>;
   eventId: number;
   userId: number;
+  loaded = false;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.eventId = +params['id'];
       this.userId = +this.coreService.getLoggedInUserId();
     this.eventLocations = this.eventsService.getEventLocations(this.userId, this.eventId);
+    this.eventsService.getEvent(this.userId, this.eventId).subscribe(event => {
+      if (event === null) {
+        this.router.navigate(['']);
+      } else {
+        this.eventCreator = event.createdBy;
+        this.loaded = true;
+      }
+    });
     });
   }
 
