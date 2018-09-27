@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
 
   createForm(): void {
     this.formGroup = this.formBuilder.group({
-      Email: new FormControl(this.user.email),
-      Password: new FormControl(this.user.password),
+      email: new FormControl(this.user.email),
+      password: new FormControl(this.user.password),
     });
   }
 
