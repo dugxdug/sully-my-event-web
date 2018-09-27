@@ -3,8 +3,14 @@
 <div *ngIf="nextEvent">
   <div class="top-shelf top-shelf-grey mb-5" style="width: 100vw!important">
     <div class="container">
-      <a routerLink="/event"><button class="btn btn-primary float-sm-right">Sully Sully</button></a>
-      <h1 class="display-4 py-3">Next Event</h1>
+      <div class="justify-content-space-between">
+        <h1 class="display-4 py-3">Next Event</h1>
+        <a routerLink="/event">
+          <button class="btn background-primary white-text text-sm mt-4">
+            Sully Sully
+          </button>
+        </a>
+      </div>
       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
         <img class="card-img-left flex-auto d-none d-lg-block" [src]="nextEvent.imageUrl ? nextEvent.imageUrl : nextEvent.hasVoted ? './assets/voted2.png' : './assets/not_voted2.png'">
         <div class="card-body d-flex flex-column align-items-start">
@@ -13,7 +19,9 @@
           </h3>
           <div class="mb-2 text-muted">{{nextEvent.eventTime | date:'short'}}</div>
           <p class="card-text mb-auto">{{nextEvent.description}}</p>
-          <p class="card-text"><small class="text-muted">Event in {{nextEvent.countDown}} days!</small></p>
+          <p class="card-text">
+            <small class="text-muted">Event in {{nextEvent.countDown}} days!</small>
+          </p>
         </div>
       </div>
     </div>
@@ -32,7 +40,9 @@
               </h4>
               <div class="mb-2 text-muted">{{event.eventTime | date:'short'}}</div>
               <p class="card-text">{{event.description}}</p>
-              <p class="card-text"><small class="text-muted">Event in {{event.countDown}} days!</small></p>
+              <p class="card-text">
+                <small class="text-muted">Event in {{event.countDown}} days!</small>
+              </p>
             </div>
           </div>
         </div>
@@ -49,10 +59,11 @@
 <div *ngIf="events.length === 0 && !nextEvent" class="container">
   <div class="jumbotron">
     <h1 class="display-4">We couldn't find any events for you!</h1>
-    <p class="lead">It looks like you haven't created or been invited to any events yet. Click the button below to
-      create an event.</p>
+    <p class="lead">It looks like you haven't created or been invited to any events yet. Click the button below to create an event.</p>
     <p class="lead">
-      <a routerLink="/event"><button class="btn btn-primary btn-lg">Sully Sully</button></a>
+      <a routerLink="/event">
+        <button class="btn btn-primary btn-lg">Sully Sully</button>
+      </a>
     </p>
   </div>
 </div>
