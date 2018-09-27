@@ -28,15 +28,15 @@ const routes: Routes = [
         component: PollComponent,
         pathMatch: 'full'
       },
+      {
+        path: 'create',
+        component: CreateUserComponent,
+      }
     ]
   },
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'create',
-    component: CreateUserComponent,
   }
 ];
 
