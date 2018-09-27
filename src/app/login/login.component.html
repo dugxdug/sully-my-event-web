@@ -5,7 +5,7 @@
       <form [formGroup]="formGroup">
         <div class="form-group form-margin">
           <label for="Email">
-            <span class="white-text title-style">UserName</span>
+            <span class="white-text text-md">UserName</span>
           </label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -13,12 +13,12 @@
                 <i class="icon ion-md-person"></i>
               </span>
             </div>
-            <input type="text" id="Email" name="Email" formControlName="Email" class="form-control">
+            <input type="text" id="Email" name="Email" formControlName="email" class="form-control">
           </div>
         </div>
         <div class="form-group form-margin">
           <label for="Password">
-            <span class="white-text title-style">Password</span>
+            <span class="white-text text-md">Password</span>
           </label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -26,7 +26,7 @@
                 <i class="icon ion-md-lock"></i>
               </span>
             </div>
-            <input type="password" pPassword id="Password" name="Password" formControlName="Password" class="form-control">
+            <input type="password" pPassword id="Password" name="Password" formControlName="password" class="form-control">
           </div>
         </div>
         <div class="form-group d-flex justify-content-center">
@@ -34,7 +34,7 @@
         </div>
       </form>
       <div class="align-center">
-      <span class="white-text sub-text">
+      <span class="white-text text-sm">
         Don't have an account?
         <a [routerLink]="['/create']">
           Create One!

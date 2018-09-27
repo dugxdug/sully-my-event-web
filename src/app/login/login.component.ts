@@ -28,17 +28,18 @@ export class LoginComponent implements OnInit {
 
   createForm(): void {
     this.formGroup = this.formBuilder.group({
-      Email: new FormControl(this.user.Email),
-      Password: new FormControl(this.user.Password),
+      email: new FormControl(this.user.email),
+      password: new FormControl(this.user.password),
     });
   }
 
   AttemptLogin() {
     const model = <UserModel>{ ...this.user, ...this.formGroup.value };
 
-    this.userService.logUserIn(model).subscribe(res => {
-      if (res > 0 ) {
-        this.coreService.setLoggedInUserId(res);
+    this.userService.logUserIn(model).subscribe((res: UserModel) => {
+      console.log(res);
+      if (res) {
+        this.coreService.setLoggedInUser(res);
         this.router.navigate(['']);
       }
     });
