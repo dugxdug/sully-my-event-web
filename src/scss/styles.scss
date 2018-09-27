@@ -4,8 +4,11 @@
 
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  background: $background-light;
 }
-
+.primary-title {
+  color: #79B791 !important;
+}
 .clearfix {
   clear: both;
 }
@@ -67,4 +70,13 @@ body {
 .btn-primary {
   background-color:  #79B791 !important;
   border-color:  #79B791!important;
+}
+
+body .ui-toast .ui-toast-message.ui-toast-message-success {
+  background-color: #79B791 !important;
+  color: white !important;
+}
+
+body .ui-toast .ui-toast-message.ui-toast-message-success .ui-toast-close-icon {
+  color: white !important;
 }

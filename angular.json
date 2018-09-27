@@ -27,11 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/scss/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeflex/primeflex.scss"
+              "node_modules/primeflex/primeflex.scss",
+              "src/scss/styles.scss"
+
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"

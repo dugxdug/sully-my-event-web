@@ -6,6 +6,7 @@ import { YelpResult, YelpResults } from '../models/yelp-results.model';
 import { UserService } from '../core/user.service';
 import { EventsService } from '../core/events.service';
 import { SelectedLocation } from '../models/location.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event',
@@ -32,7 +33,10 @@ export class EventComponent implements OnInit {
   eventUsers = Array<{ userId: number }>();
   eventLocations = Array<SelectedLocation>();
 
-  constructor(private yelpService: YelpService, private userService: UserService, private eventService: EventsService) { }
+  constructor(private yelpService: YelpService,
+    private userService: UserService,
+    private eventService: EventsService,
+    private router: Router) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe((userList) => {
@@ -86,7 +90,7 @@ export class EventComponent implements OnInit {
       createdBy: 'test'
     };
     this.eventService.createEvent(1, event).subscribe(() => {
-      // window.location.href = '../';
+      this.router.navigate(['']);
     });
   }
 
@@ -99,11 +103,9 @@ export class EventComponent implements OnInit {
   }
 
   cardClicked(result: any) {
-    console.log(result);
     if (!this.eventLocations.find(x => x.yelpId === result.id)) {
       this.eventLocations.push(
         new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
     }
-    console.log(this.eventLocations);
   }
 }

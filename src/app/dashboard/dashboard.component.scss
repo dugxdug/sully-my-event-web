@@ -8,6 +8,7 @@
     min-width: 1020px;
     position: relative;
     padding-top: 15px;
+    margin-top: -3rem!important;
 }
 
 .card-img-left {
@@ -15,4 +16,8 @@
   object-fit: contain;
   border-bottom-left-radius: 0.25rem;
   border-top-left-radius: 0.25rem;
+}
+
+.ui-toast-message-success-important {
+    background-color: #79B791 !important;
 }

@@ -70,9 +70,9 @@ export class EventsService {
 
   getEventLocations(userId: number, eventId: number): Observable<any> {
 
-    // return this.http.get(`${environment.ApiBaseUrl}/users/${userId}/events/${eventId}/locations`);
+    return this.http.get(`${environment.ApiBaseUrl}/users/${userId}/events/${eventId}/locations`);
 
-    return of([
+   /*  return of([
       {
         yelpId: 1, price: '$', rating: 4.5, name: 'Taco Bell', address: 'test address test out a long address',
         imgUrl: 'https://s3-media1.fl.yelpcdn.com/bphoto/GrCCQ2Pi3_aVbDbYXH_-iw/o.jpg', url: 'https://www.google.com'
@@ -85,7 +85,7 @@ export class EventsService {
       },
       { yelpId: 4, price: '$$$', rating: 4, name: 'test location2', address: 'test address2',
       imgUrl: 'https://via.placeholder.com/350x250' }
-    ]);
+    ]); */
   }
 
   updateEventWithVote(userId: number, eventId: number, locationId: string): Observable<any> {

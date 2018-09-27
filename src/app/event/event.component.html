@@ -1,34 +1,40 @@
-<h3 class="first">Create Event</h3>
-<p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
-<div [hidden]="activeIndex !== 0">
-    <div class="form-group">Users: <p-multiSelect [options]="users" [(ngModel)]="selectedUsers" [style]="{'width': '100%'}"></p-multiSelect></div>   
-    <div class="form-group">Title: <input type="text" pInputText [(ngModel)]="title" class="form-control"/></div>
-    <div class="form-group">Description: <textarea pInputTextarea [(ngModel)]="description" class="form-control"></textarea></div>
-    <div class="form-group">Date/Time: <p-calendar [(ngModel)]="date" [showTime]="true" [style]="{'width': '100%'}"></p-calendar></div>
-    <button type="button" class="btn btn-primary" (click)="activeIndex = 1">Next</button>
-</div>
-<div [hidden]="activeIndex !== 1">
-    <div class="form-group">Type of Food: <input type="text" pInputText [(ngModel)]="searchTerm" class="form-control"/></div>  
-    <div class="form-group">Price Range: <p-multiSelect [options]="prices" [(ngModel)]="selectedPrices" [style]="{'width': '100%'}"></p-multiSelect></div>
-    <div class="form-group">Radius (mi): <input type="text" pInputText [(ngModel)]="radius" class="form-control"/></div>
-    <div class="form-group">Location: <input type="text" pInputText [(ngModel)]="location" class="form-control"/></div>  
-    <div class="form-group">Rating: <p-multiSelect [options]="stars" [(ngModel)]="selectedStars" [style]="{'width': '100%'}"></p-multiSelect></div>
-    <button type="button" class="btn btn-secondary" (click)="activeIndex = 0">Previous</button>   
-    <button type="button" class="btn btn-primary" (click)="getRestaurants();">Next</button>
-</div>    
-<div [hidden]="activeIndex !== 2">
-    <div class="p-grid p-justify-center mt-0">
-        <div class="p-col-3" *ngFor="let result of restaurantResults?.businesses">
-            <div class="card" (click)="cardClicked(result)">
-                <img class="card-img-top" style="object-fit: cover; height: 200px" [src]="result.image_url" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{result.name}}</h5>
-                    <p class="card-text">Price: {{result.price}}</p>
-                    <p class="card-text">Rating: {{result.rating}}</p>
-                </div>
-            </div>
-        </div>
+<div class="container" style="height: 100%">
+  <h3 class="first">Create Event</h3>
+  <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+  <div [hidden]="activeIndex !== 0">
+    <div class="form-group">Users: <p-multiSelect [options]="users" [(ngModel)]="selectedUsers" [style]="{'width': '100%'}"></p-multiSelect>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="activeIndex = 1">Previous</button> 
+    <div class="form-group">Title: <input type="text" pInputText [(ngModel)]="title" class="form-control" /></div>
+    <div class="form-group">Description: <textarea pInputTextarea [(ngModel)]="description" class="form-control"></textarea></div>
+    <div class="form-group">Date/Time: <p-calendar [(ngModel)]="date" [showTime]="true" [style]="{'width': '100%'}"></p-calendar>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="activeIndex = 1">Next</button>
+  </div>
+  <div [hidden]="activeIndex !== 1">
+    <div class="form-group">Type of Food: <input type="text" pInputText [(ngModel)]="searchTerm" class="form-control"/></div>
+    <div class="form-group">Price Range: <p-multiSelect [options]="prices" [(ngModel)]="selectedPrices" [style]="{'width': '100%'}"></p-multiSelect>
+    </div>
+    <div class="form-group">Radius (mi): <input type="text" pInputText [(ngModel)]="radius" class="form-control" /></div>
+    <div class="form-group">Location: <input type="text" pInputText [(ngModel)]="location" class="form-control" /></div>
+    <div class="form-group">Rating: <p-multiSelect [options]="stars" [(ngModel)]="selectedStars" [style]="{'width': '100%'}"></p-multiSelect>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="activeIndex = 0">Previous</button>
+    <button type="button" class="btn btn-primary" (click)="getRestaurants();">Next</button>
+  </div>
+  <div [hidden]="activeIndex !== 2">
+    <div class="p-grid p-justify-center mt-0">
+      <div class="p-col-3" *ngFor="let result of restaurantResults?.businesses">
+        <div class="card" (click)="cardClicked(result)">
+          <img class="card-img-top" style="object-fit: cover; height: 200px" [src]="result.image_url" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{result.name}}</h5>
+            <p class="card-text">Price: {{result.price}}</p>
+            <p class="card-text">Rating: {{result.rating}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="activeIndex = 1">Previous</button>
     <button type="button" class="btn btn-primary" (click)="save()">Finish</button>
-</div>   
+  </div>
+</div>
