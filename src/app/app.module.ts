@@ -56,8 +56,6 @@ import { CoreService } from './core/core.service';
     InputTextareaModule,
     InputTextModule,
     StepsModule,
-    CardModule,
-    FormsModule,
     ReactiveFormsModule,
     ToastModule
   ],

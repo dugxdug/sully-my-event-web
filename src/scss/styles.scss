@@ -39,6 +39,10 @@ body {
   margin-bottom: 10px;
 }
 
+.ui-state-highlight .ui-steps-number {
+  background-color:  #79B791!important;
+}
+
 .ui-steps.steps-custom .ui-steps-item .ui-steps-title {
   color: #555555;
 }
@@ -49,4 +53,20 @@ body {
 
 .background-light {
     background-color: $background-light;
+}
+
+.primary-title {
+  color: #79B791 !important;
+}
+
+.background-primary {
+  background-color: #79B791 !important;
+}
+
+.white-text {
+  color: white;
+}
+.btn-primary {
+  background-color:  #79B791 !important;
+  border-color:  #79B791!important;
 }

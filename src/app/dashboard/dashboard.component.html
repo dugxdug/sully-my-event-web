@@ -1,44 +1,32 @@
 <p-toast [style]="{marginTop: '80px'}" position="top-right" key="voteSuccess"></p-toast>
-<a routerLink="/event"><button class="btn mb-3">Add Event</button></a>
+<a routerLink="/event"><button class="btn btn-primary mb-3">Add Event</button></a>
 
 <div class="top-shelf top-shelf-grey mb-5">
   <div class="container">
     <h1 class="display-4 py-3">Upcoming Events</h1>
-    <div class="card mb-5">
-      <img class="card-img-top" src="https://s3-media1.fl.yelpcdn.com/bphoto/GrCCQ2Pi3_aVbDbYXH_-iw/o.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Team Lunch</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-          content. This content is a little bit longer.</p>
+    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+      <img class="card-img-left flex-auto d-none d-lg-block" [src]="nextEvent.imageUrl" alt="Thumbnail [200x250]">
+      <div class="card-body d-flex flex-column align-items-start">
+        <h3 class="mb-1">
+          <a class="text-dark" href="#">{{nextEvent.Title}}</a>
+        </h3>
+        <div class="mb-2 text-muted">{{nextEvent.Time}}</div>
+        <p class="card-text mb-auto">{{nextEvent.Description}}</p>
         <p class="card-text"><small class="text-muted">Event in 2 days!</small></p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="card-deck">
+<div class="p-grid">
+  <div class="p-col-3" *ngFor="let event of events">
     <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
+      <img class="card-img-top" [src]="event.imageUrl" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title">{{event.Title}}</h5>
+        <p class="card-text">{{event.Description}}</p>
+        <p class="card-text"><small class="text-muted">{{event.Time}}</small></p>
       </div>
     </div>
   </div>
+</div>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem, MenuItem } from 'primeng/primeng';
+import { YelpService } from '../core/yelp.service';
+import { LocationFilter } from '../models/location-filter.model';
+import { YelpResults } from '../models/yelp-results.model';
 
 @Component({
   selector: 'app-event',
@@ -17,12 +20,14 @@ export class EventComponent implements OnInit {
   title: string;
   location: string;
   description: string;
-  radius: string;
+  radius: number;
   index = 0;
   items: MenuItem[];
   activeIndex = 0;
+  model = {};
+  restaurantResults: YelpResults;
 
-  constructor() { }
+  constructor(private yelpService: YelpService) { }
 
   ngOnInit() {
     this.users = [
@@ -34,8 +39,7 @@ export class EventComponent implements OnInit {
       { label: '$', value: 1},
       { label: '$$ ', value: 2},
       { label: '$$$ ', value: 3},
-      { label: '$$$$ ', value: 4},
-      { label: '$$$$$ ', value: 5}
+      { label: '$$$$ ', value: 4}
     ];
 
     this.stars = [
@@ -60,6 +64,24 @@ export class EventComponent implements OnInit {
 
   save() {
     window.location.href = '../';
+  }
+
+  getRestaurants() {
+    this.model = {
+      users: this.selectedUsers,
+      prices: this.selectedPrices,
+      date: this.date,
+      title: this.title,
+      location: this.location,
+      description: this.description,
+      radius: this.radius
+    };
+
+    const filterData = new LocationFilter(this.location, this.selectedPrices.join(), Math.floor(this.radius / .00062137));
+    this.yelpService.searchBusinesses(filterData).subscribe((results) => {
+      this.restaurantResults = results;
+      this.activeIndex = 2;
+    });
   }
 
 }
