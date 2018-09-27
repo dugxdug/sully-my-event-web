@@ -13,10 +13,14 @@
     <div class="form-group">Location: <input type="text" pInputText [(ngModel)]="location" class="form-control"/></div>  
     <div class="form-group">Rating: <p-multiSelect [options]="stars" [(ngModel)]="selectedStars" [style]="{'width': '100%'}"></p-multiSelect></div>
     <button type="button" class="btn btn-secondary" (click)="activeIndex = 0">Previous</button>   
-    <button type="button" class="btn btn-primary" (click)="activeIndex = 2">Next</button>
+    <button type="button" class="btn btn-primary" (click)="getRestaurants();">Next</button>
 </div>    
 <div [hidden]="activeIndex !== 2">
-    <div>Pick your restaurants here</div>
+    <div *ngFor="let result of restaurantResults?.businesses">
+        <div>
+            {{result.name}}, {{result.price}}, {{result.rating}}
+        </div>
+    </div>
     <button type="button" class="btn btn-secondary" (click)="activeIndex = 1">Previous</button> 
     <button type="button" class="btn btn-primary" (click)="save()">Finish</button>
 </div>   
