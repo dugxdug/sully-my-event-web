@@ -1,7 +1,7 @@
 <p-toast [style]="{marginTop: '80px'}" position="top-right" key="voteSuccess"></p-toast>
-<a routerLink="/event"><button class="btn btn-primary mb-3">Add Event</button></a>
+<!-- <a routerLink="/event"><button class="btn btn-primary mb-3">Add Event</button></a> -->
 
-<div class="top-shelf top-shelf-grey mb-5">
+<div class="top-shelf top-shelf-grey mb-5" style="width: 100vw!important">
   <div class="container">
     <h1 class="display-4 py-3">Upcoming Events</h1>
     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
@@ -18,14 +18,16 @@
   </div>
 </div>
 
-<div class="p-grid">
-  <div class="p-col-3" *ngFor="let event of events">
-    <div class="card">
-      <img class="card-img-top" [src]="event.imageUrl" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{event.Title}}</h5>
-        <p class="card-text">{{event.Description}}</p>
-        <p class="card-text"><small class="text-muted">{{event.Time}}</small></p>
+<div class="container">
+  <div class="p-grid">
+    <div class="p-col-3" *ngFor="let event of events">
+      <div class="card">
+        <img class="card-img-top" [src]="event.imageUrl" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{event.Title}}</h5>
+          <p class="card-text">{{event.Description}}</p>
+          <p class="card-text"><small class="text-muted">{{event.Time}}</small></p>
+        </div>
       </div>
     </div>
   </div>
