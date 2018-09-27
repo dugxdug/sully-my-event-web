@@ -23,9 +23,16 @@
     </p-card>
   </div>
 </div>
-<div *ngIf="this.eventLocations.length === 0" class="text-center mt-5">
+<div *ngIf="this.eventLocations.length === 0 && this.closedPoll == false" class="text-center mt-5">
     <img width="250px" src="../../assets/logo.png" class="logo mb-5">
     <h2>Looks like you already voted.</h2>
+    <p>
+      <a class="primary-title" [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a> 
+    </p>
+</div>
+<div *ngIf="this.closedPoll" class="text-center mt-5">
+    <img width="250px" src="../../assets/logo.png" class="logo mb-5">
+    <h2>Oops...Looks like this poll already closed :(</h2>
     <p>
       <a class="primary-title" [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a> 
     </p>
