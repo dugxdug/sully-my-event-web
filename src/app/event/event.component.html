@@ -28,9 +28,9 @@
         <div class="card" (click)="cardClicked(result)" [class.card-selected]="selectedCards.includes(result.id)">
           <img class="card-img-top" [src]="result.image_url" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{result.name}}</h5>
-            <p class="card-text">Price: {{result.price}}</p>
-            <p class="card-text">Rating: {{result.rating}}</p>
+            <h5>{{result.name}}</h5>
+            <p>Price: {{result.price}}</p>
+            <p>Rating: {{result.rating}}</p>
           </div>
         </div>
       </div>
