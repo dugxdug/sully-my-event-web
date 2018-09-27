@@ -27,7 +27,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.eventsService.getEvents(this.userId).subscribe(events => {
       this.nextEvent = events[0];
       this.events = events.slice(1);
-      console.log(events);
+      console.log(this.events);
+      console.log(this.nextEvent);
     });
   }
 
