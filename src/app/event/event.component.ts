@@ -7,6 +7,7 @@ import { UserService } from '../core/user.service';
 import { EventsService } from '../core/events.service';
 import { SelectedLocation } from '../models/location.model';
 import { Router } from '@angular/router';
+import { Email } from '../models/email.model';
 
 @Component({
   selector: 'app-event',
@@ -90,7 +91,10 @@ export class EventComponent implements OnInit {
       createdById: localStorage.getItem('userId'),
       createdBy: 'test'
     };
-    this.eventService.createEvent(1, event).subscribe(() => {
+    this.eventService.createEvent(1, event).subscribe((id) => {
+      const emailObject = new Email('sulliedhackathon@gmail.com', 'You have been sullied',
+        `http://localhost:1111/events/${id}/poll`, this.selectedUsers);
+      this.eventService.email(emailObject).subscribe();
       this.router.navigate(['']);
     });
   }
