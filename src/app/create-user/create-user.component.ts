@@ -4,6 +4,7 @@ import { UserModel } from 'src/app/models/user.model';
 import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/core/user.service';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -16,7 +17,8 @@ export class CreateUserComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -33,11 +35,13 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
-  AttemptLogin() {
+  CreateUser() {
     const model = <UserModel>{ ...this.user, ...this.formGroup.value };
 
     this.userService.createUser(model).subscribe(res => {
-      console.log(res);
+      if (res > 0 ) {
+        this.router.navigate(['login']);
+      }
     });
   }
 }
