@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/core/user.service';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CoreService } from 'src/app/core/core.service';
 
 @Component({
   selector: 'app-create-user',
@@ -18,6 +19,7 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private coreService: CoreService,
     private router: Router,
   ) { }
 
@@ -28,18 +30,19 @@ export class CreateUserComponent implements OnInit {
 
   createForm(): void {
     this.formGroup = this.formBuilder.group({
-      Email: new FormControl(this.user.Email),
-      Password: new FormControl(this.user.Password),
-      FirstName: new FormControl(this.user.FirstName),
-      LastName: new FormControl(this.user.LastName),
+      Email: new FormControl(this.user.email),
+      Password: new FormControl(this.user.password),
+      FirstName: new FormControl(this.user.firstName),
+      LastName: new FormControl(this.user.lastName),
     });
   }
 
   CreateUser() {
     const model = <UserModel>{ ...this.user, ...this.formGroup.value };
 
-    this.userService.createUser(model).subscribe(res => {
-      if (res > 0 ) {
+    this.userService.createUser(model).subscribe((res: UserModel) => {
+      if (res) {
+        this.coreService.setLoggedInUser(res);
         this.router.navigate(['login']);
       }
     });

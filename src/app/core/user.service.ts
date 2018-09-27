@@ -9,12 +9,12 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    logUserIn(user: UserModel): Observable<number> {
-        return this.http.post<number>(`https://localhost:44353/v1/login`, user);
+    logUserIn(user: UserModel): Observable<UserModel> {
+        return this.http.post<UserModel>(`https://localhost:44353/v1/login`, user);
     }
 
-    createUser(user: UserModel): Observable<any> {
-        return this.http.post<number>(`https://localhost:44353/v1/users`, user);
+    createUser(user: UserModel): Observable<UserModel> {
+        return this.http.post<UserModel>(`https://localhost:44353/v1/users`, user);
     }
 
     getUsers(): Observable<any> {
