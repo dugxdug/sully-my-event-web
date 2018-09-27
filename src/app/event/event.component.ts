@@ -110,6 +110,7 @@ export class EventComponent implements OnInit {
     if (!this.eventLocations.find(x => x.yelpId === result.id)) {
       this.eventLocations.push(
         new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
+        console.log(this.eventLocations);
     }
 
     if (this.selectedCards.find(x => x === result.id)) {

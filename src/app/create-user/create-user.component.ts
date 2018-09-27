@@ -30,10 +30,10 @@ export class CreateUserComponent implements OnInit {
 
   createForm(): void {
     this.formGroup = this.formBuilder.group({
-      Email: new FormControl(this.user.email),
-      Password: new FormControl(this.user.password),
-      FirstName: new FormControl(this.user.firstName),
-      LastName: new FormControl(this.user.lastName),
+      email: new FormControl(this.user.email),
+      password: new FormControl(this.user.password),
+      firstName: new FormControl(this.user.firstName),
+      lastName: new FormControl(this.user.lastName),
     });
   }
 
@@ -43,7 +43,7 @@ export class CreateUserComponent implements OnInit {
     this.userService.createUser(model).subscribe((res: UserModel) => {
       if (res) {
         this.coreService.setLoggedInUser(res);
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
       }
     });
   }
