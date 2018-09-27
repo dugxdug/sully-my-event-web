@@ -2,6 +2,15 @@
 @import '~bootstrap/scss/bootstrap';
 @import './colors';
 
+body {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+.primary-title {
+  color: #79B791 !important;
+}
+.clearfix {
+  clear: both;
+}
 
 .bg-light  {
     background-color: #435058 !important;
