@@ -18,6 +18,7 @@ export class PollComponent implements OnInit {
     private coreService: CoreService,
     private route: ActivatedRoute,
     private router: Router) { }
+    closedPoll = false;
   eventCreator: string;
   eventLocations: any[] = [];
   eventId: number;
@@ -32,8 +33,8 @@ export class PollComponent implements OnInit {
       this.eventLocations = results;
     });
     this.eventsService.getEvent(this.userId, this.eventId).subscribe(event => {
-      if (event === null) {
-        this.router.navigate(['']);
+      if (event === null || event.locationId != null) {
+        this.closedPoll = true;
       } else {
         this.eventCreator = event.createdBy;
         this.loaded = true;

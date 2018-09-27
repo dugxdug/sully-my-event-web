@@ -1,5 +1,6 @@
 <div class="container" style="height: 100%">
   <h3 class="first">Create Event</h3>
+  <a class="primary-title" [routerLink]="['../']" routerLinkActive="router-link-active" ><i style="font-size: small" class="pi pi-chevron-left"></i>Back to Dashboard</a>
   <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
   <div [hidden]="activeIndex !== 0">
     <div class="form-group">Users: <p-multiSelect [options]="users" [(ngModel)]="selectedUsers" [style]="{'width': '100%'}"></p-multiSelect>
