@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MessageService } from 'primeng/primeng';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../core/events.service';
+import { CoreService } from '../core/core.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,13 +14,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   voted = false;
   nextEvent = null;
   events = [];
-  userId = 1;
+  userId;
   constructor(
+    private coreService: CoreService,
     private eventsService: EventsService,
     private messageService: MessageService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.userId = this.coreService.getLoggedInUserId();
+    console.log(this.userId);
     this.eventsService.getEvents(this.userId).subscribe(events => {
       this.nextEvent = events[0];
       this.events = events.slice(1);
