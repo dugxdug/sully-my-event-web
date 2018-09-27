@@ -21,13 +21,15 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpHelperService } from './core/http-helper.service';
 import { EventComponent } from './event/event.component';
-import { AccordionModule } from 'primeng/primeng';
+import { AccordionModule, MessagesModule, MessageService } from 'primeng/primeng';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { CalendarModule } from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputTextModule} from 'primeng/inputtext';
 import {StepsModule} from 'primeng/steps';
+import {ToastModule} from 'primeng/toast';
 import { CreateUserComponent } from 'src/app/create-user/create-user.component';
+import { CoreService } from './core/core.service';
 
 @NgModule({
   declarations: [
@@ -57,8 +59,9 @@ import { CreateUserComponent } from 'src/app/create-user/create-user.component';
     CardModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastModule
   ],
-  providers: [YelpService, HttpHelperService, UserService, EventsService],
+  providers: [YelpService, HttpHelperService, UserService, EventsService, CoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

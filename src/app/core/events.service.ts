@@ -23,12 +23,16 @@ export class EventsService {
     // return this.http.get(`${environment.ApiBaseUrl}/users/${userId}/events/${eventId}/locations`);
 
     return of([
-      {yelpId: 1, price: '$$', rating: 4.5, name: 'test location', address: 'test address test out a long address',
-        imgUrl: 'https://via.placeholder.com/350x250', url: 'https://www.google.com'},
-      {yelpId: 2, price: '$$$', rating: 4, name: 'test location2', address: 'test address2', imgUrl: 'https://via.placeholder.com/350x250'},
+      {yelpId: 1, price: '$', rating: 4.5, name: 'Taco Bell', address: 'test address test out a long address',
+        imgUrl: 'https://s3-media1.fl.yelpcdn.com/bphoto/GrCCQ2Pi3_aVbDbYXH_-iw/o.jpg', url: 'https://www.google.com'},
+      {yelpId: 2, price: '$$$', rating: 4, name: 'test location2', address: 'test address2', imgUrl: 'https://via.placeholder.com/500x400'},
       {yelpId: 3, price: '$$$$', rating: 4, name: 'test location2', address: 'test address2',
         imgUrl: 'https://via.placeholder.com/350x250'},
       {yelpId: 4, price: '$$$', rating: 4, name: 'test location2', address: 'test address2', imgUrl: 'https://via.placeholder.com/350x250'}
     ]);
+  }
+
+  updateEventWithVote(userId: number, eventId: number, locationId: string): Observable<any> {
+    return this.http.patch(`${environment.ApiBaseUrl}/users/${userId}/events/${eventId}`, {locationId});
   }
 }
