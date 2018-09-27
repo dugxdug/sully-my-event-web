@@ -32,6 +32,7 @@ export class EventComponent implements OnInit {
   restaurantResults: YelpResults;
   eventUsers = Array<{ userId: number }>();
   eventLocations = Array<SelectedLocation>();
+  selectedCards = Array<string>();
 
   constructor(private yelpService: YelpService,
     private userService: UserService,
@@ -107,6 +108,12 @@ export class EventComponent implements OnInit {
       this.eventLocations.push(
         new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
         console.log(this.eventLocations);
+    }
+
+    if (this.selectedCards.find(x => x === result.id)) {
+      this.selectedCards.splice(this.selectedCards.findIndex(x => x === result.id));
+    } else {
+      this.selectedCards.push(result.id);
     }
   }
 }

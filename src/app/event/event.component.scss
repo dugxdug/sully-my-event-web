@@ -1,0 +1,10 @@
+@import '~bootstrap/scss/bootstrap';
+@import '../../scss/styles.scss';
+
+.card:hover {
+  background-color: #79B791;
+}
+
+.card-selected {
+  background-color: #79B791;
+}

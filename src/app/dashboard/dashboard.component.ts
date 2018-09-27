@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/primeng';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../core/events.service';
 import { CoreService } from '../core/core.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,11 +24,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.userId = this.coreService.getLoggedInUserId();
-    console.log(this.userId);
     this.eventsService.getEvents(this.userId).subscribe(events => {
+      events.map(e => {
+        e.countDown = this.getDateCountdown(e.eventTime);
+      });
       this.nextEvent = events[0];
       this.events = events.slice(1);
-      console.log(events);
     });
   }
 
@@ -46,6 +48,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }, 1000);
       }
     });
+  }
+
+  private getDateCountdown(eventDate) {
+    const today = moment();
+    const event = moment(eventDate);
+    const countDown = event.diff(today, 'days');
+
+    return countDown;
   }
 
 }

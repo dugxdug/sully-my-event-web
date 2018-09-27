@@ -1,19 +1,19 @@
 <p-toast [style]="{marginTop: '80px'}" position="top-right" key="voteSuccess"></p-toast>
 
-<div *ngIf="events.length > 0">
+<div *ngIf="nextEvent">
   <div class="top-shelf top-shelf-grey mb-5" style="width: 100vw!important">
     <div class="container">
       <a routerLink="/event"><button class="btn btn-primary float-sm-right">Sully Sully</button></a>
       <h1 class="display-4 py-3">Next Event</h1>
       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-        <img class="card-img-left flex-auto d-none d-lg-block" [src]="nextEvent.imageUrl" alt="Thumbnail [200x250]">
+        <img class="card-img-left flex-auto d-none d-lg-block" [src]="nextEvent.imageUrl ? nextEvent.imageUrl : './assets/logo.png'">
         <div class="card-body d-flex flex-column align-items-start">
           <h3 class="mb-1">
-            <a class="text-dark" href="#">{{nextEvent.Title}}</a>
+            <a class="text-dark" href="#">{{nextEvent.title}}</a>
           </h3>
-          <div class="mb-2 text-muted">{{nextEvent.Time}}</div>
-          <p class="card-text mb-auto">{{nextEvent.Description}}</p>
-          <p class="card-text"><small class="text-muted">Event in 2 days!</small></p>
+          <div class="mb-2 text-muted">{{nextEvent.eventTime | date:'short'}}</div>
+          <p class="card-text mb-auto">{{nextEvent.description}}</p>
+          <p class="card-text"><small class="text-muted">Event in {{nextEvent.countDown}} days!</small></p>
         </div>
       </div>
     </div>
@@ -21,25 +21,33 @@
 
   <div class="container">
     <h5>Upcoming Events...</h5>
-    <div class="p-grid">
-      <div class="p-col-3" *ngFor="let event of events">
-        <div class="card">
-          <img class="card-img-top" [src]="event.imageUrl" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{event.Title}}</h5>
-            <p class="card-text">{{event.Description}}</p>
-            <p class="card-text"><small class="text-muted">{{event.Time}}</small></p>
+    <div *ngIf="events.length > 0">
+      <div class="p-grid">
+        <div class="p-col-3" *ngFor="let event of events">
+          <div class="card">
+            <img class="card-img-top" [src]="event.imageUrl ? event.imageUrl : './assets/logo.png'" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{event.title}}</h5>
+              <p class="card-text">{{event.description}}</p>
+              <p class="card-text"><small class="text-muted">{{event.eventTime}}</small></p>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div *ngIf="events.length === 0">
+      <div class="jumbotron">
+        <p class="lead">You don't have any additional upcoming events</p>
       </div>
     </div>
   </div>
 </div>
 
-<div *ngIf="events.length === 0" class="container">
+<div *ngIf="events.length === 0 && !nextEvent" class="container">
   <div class="jumbotron">
     <h1 class="display-4">We couldn't find any events for you!</h1>
-    <p class="lead">It looks like you haven't created or been invited to any events yet. Click the button below to create an event.</p>
+    <p class="lead">It looks like you haven't created or been invited to any events yet. Click the button below to
+      create an event.</p>
     <p class="lead">
       <a routerLink="/event"><button class="btn btn-primary btn-lg">Sully Sully</button></a>
     </p>
