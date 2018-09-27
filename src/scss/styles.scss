@@ -5,9 +5,7 @@
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
-.primary-title {
-  color: #79B791 !important;
-}
+
 .clearfix {
   clear: both;
 }
@@ -49,4 +47,16 @@ body {
 
 .background-light {
     background-color: $background-light;
+}
+
+.primary-title {
+  color: #79B791 !important;
+}
+
+.background-primary {
+  background-color: #79B791 !important;
+}
+
+.white-text {
+  color: white;
 }

@@ -4,10 +4,46 @@
     max-width: none;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .card-container {
     width: 500px;
     height: 500px;
+}
+
+.logo {
+    height: 300px;
+    margin-top: 75px;
+    padding-left: 75px;
+    margin-bottom: 25px;
+}
+
+.card-design {
+    border-radius: 10px;
+    padding-top: 30px;
+    width: 100%;
+    height: 400px;
+}
+
+.button-width {
+    width: 455px;
+    margin-top: 30px;
+}
+
+.form-margin {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.title-style {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.sub-text {
+    font-weight: 600;
+}
+
+.align-center {
+    text-align: center;
 }
