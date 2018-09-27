@@ -19,7 +19,7 @@ export class PollComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { }
   eventCreator: string;
-  eventLocations: Observable<any>;
+  eventLocations: any[] = [];
   eventId: number;
   userId: number;
   loaded = false;
@@ -28,7 +28,9 @@ export class PollComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.eventId = +params['id'];
       this.userId = +this.coreService.getLoggedInUserId();
-    this.eventLocations = this.eventsService.getEventLocations(this.userId, this.eventId);
+    this.eventsService.getEventLocations(this.userId, this.eventId).subscribe(results => {
+      this.eventLocations = results;
+    });
     this.eventsService.getEvent(this.userId, this.eventId).subscribe(event => {
       if (event === null) {
         this.router.navigate(['']);
