@@ -44,8 +44,9 @@ export class PollComponent implements OnInit {
   }
 
   vote($event, locationId: string) {
-    this.eventsService.updateEventWithVote(this.userId, this.eventId, locationId).subscribe();
-    this.router.navigate([''], {queryParams: {voted: true}});
+    this.eventsService.updateEventWithVote(this.userId, this.eventId, locationId).subscribe(success => {
+      this.router.navigate([''], {queryParams: {voted: true}});
+    });
   }
 
 }
