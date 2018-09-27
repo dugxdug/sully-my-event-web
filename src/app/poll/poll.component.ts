@@ -18,7 +18,7 @@ export class PollComponent implements OnInit {
     private coreService: CoreService,
     private route: ActivatedRoute,
     private router: Router) { }
-    closedPoll: boolean;
+    closedPoll = false;
   eventCreator: string;
   eventLocations: any[] = [];
   eventId: number;
