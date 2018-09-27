@@ -8,6 +8,7 @@
     <button type="button" class="btn btn-primary" (click)="activeIndex = 1">Next</button>
 </div>
 <div [hidden]="activeIndex !== 1">
+    <div class="form-group">Type of Food: <input type="text" pInputText [(ngModel)]="searchTerm" class="form-control"/></div>  
     <div class="form-group">Price Range: <p-multiSelect [options]="prices" [(ngModel)]="selectedPrices" [style]="{'width': '100%'}"></p-multiSelect></div>
     <div class="form-group">Radius (mi): <input type="text" pInputText [(ngModel)]="radius" class="form-control"/></div>
     <div class="form-group">Location: <input type="text" pInputText [(ngModel)]="location" class="form-control"/></div>  
@@ -18,13 +19,13 @@
 <div [hidden]="activeIndex !== 2">
     <div class="p-grid p-justify-center mt-0">
         <div class="p-col-3" *ngFor="let result of restaurantResults?.businesses">
-            <div class="card">
-            <img class="card-img-top" style="object-fit: cover; height: 200px" [src]="result.image_url" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{result.name}}</h5>
-                <p class="card-text">Price: {{result.price}}</p>
-                <p class="card-text">Rating: {{result.rating}}</p>
-            </div>
+            <div class="card" (click)="cardClicked(result)">
+                <img class="card-img-top" style="object-fit: cover; height: 200px" [src]="result.image_url" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{result.name}}</h5>
+                    <p class="card-text">Price: {{result.price}}</p>
+                    <p class="card-text">Rating: {{result.rating}}</p>
+                </div>
             </div>
         </div>
     </div>

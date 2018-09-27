@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MenuItem } from 'primeng/primeng';
 import { YelpService } from '../core/yelp.service';
 import { LocationFilter } from '../models/location-filter.model';
-import { YelpResults } from '../models/yelp-results.model';
+import { YelpResult, YelpResults } from '../models/yelp-results.model';
+import { UserService } from '../core/user.service';
+import { EventsService } from '../core/events.service';
+import { SelectedLocation } from '../models/location.model';
 
 @Component({
   selector: 'app-event',
@@ -10,7 +13,7 @@ import { YelpResults } from '../models/yelp-results.model';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
-  users: SelectItem[];
+  users = Array<SelectItem>();
   prices: SelectItem[];
   stars: SelectItem[];
   selectedUsers: number[] = [];
@@ -24,16 +27,23 @@ export class EventComponent implements OnInit {
   index = 0;
   items: MenuItem[];
   activeIndex = 0;
-  model = {};
+  searchTerm: string;
   restaurantResults: YelpResults;
+  eventUsers = Array<{ userId: number }>();
+  eventLocations = Array<SelectedLocation>();
 
-  constructor(private yelpService: YelpService) { }
+  constructor(private yelpService: YelpService, private userService: UserService, private eventService: EventsService) { }
 
   ngOnInit() {
-    this.users = [
-      { label: 'Test User', value: 1},
-      { label: 'Test User2 ', value: 2}
-    ];
+    this.userService.getUsers().subscribe((userList) => {
+      userList.forEach(user => {
+        const selectItem: SelectItem = {
+          label: user.firstName,
+          value: user.id
+        };
+        this.users.push(selectItem);
+      });
+    });
 
     this.prices = [
       { label: '$', value: 1},
@@ -52,9 +62,9 @@ export class EventComponent implements OnInit {
 
 
     this.items = [
-      {label: 'Step 1'},
-      {label: 'Step 2'},
-      {label: 'Step 3'}
+      {label: 'Event Details'},
+      {label: 'Restaurant Criteria'},
+      {label: 'Restaurant Selections'}
   ];
   }
 
@@ -63,25 +73,37 @@ export class EventComponent implements OnInit {
   }
 
   save() {
-    window.location.href = '../';
+    this.selectedUsers.forEach((x) => {
+      this.eventUsers.push({userId: x});
+    });
+    const event = {
+      title: this.title,
+      description: this.description,
+      eventTime: this.date,
+      selectedLocations: this.eventLocations,
+      eventUsers: this.eventUsers,
+      createdById: localStorage.getItem('userId'),
+      createdBy: 'test'
+    };
+    this.eventService.createEvent(1, event).subscribe(() => {
+      // window.location.href = '../';
+    });
   }
 
   getRestaurants() {
-    this.model = {
-      users: this.selectedUsers,
-      prices: this.selectedPrices,
-      date: this.date,
-      title: this.title,
-      location: this.location,
-      description: this.description,
-      radius: this.radius
-    };
-
-    const filterData = new LocationFilter(this.location, this.selectedPrices.join(), Math.floor(this.radius / .00062137));
+    const filterData = new LocationFilter(this.location, this.selectedPrices.join(), Math.floor(this.radius / .00062137), this.searchTerm);
     this.yelpService.searchBusinesses(filterData).subscribe((results) => {
       this.restaurantResults = results;
       this.activeIndex = 2;
     });
   }
 
+  cardClicked(result: any) {
+    console.log(result);
+    if (!this.eventLocations.find(x => x.yelpId === result.id)) {
+      this.eventLocations.push(
+        new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
+    }
+    console.log(this.eventLocations);
+  }
 }

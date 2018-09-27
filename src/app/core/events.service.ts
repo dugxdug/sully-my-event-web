@@ -91,4 +91,8 @@ export class EventsService {
   updateEventWithVote(userId: number, eventId: number, locationId: string): Observable<any> {
     return this.http.patch(`${environment.ApiBaseUrl}/users/${userId}/events/${eventId}`, { locationId });
   }
+
+  createEvent(userId: number, event: any): Observable<any> {
+    return this.http.post(`${environment.ApiBaseUrl}/users/${userId}/events/`, event);
+  }
 }

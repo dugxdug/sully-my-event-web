@@ -16,4 +16,8 @@ export class UserService {
     createUser(user: UserModel): Observable<any> {
         return this.http.post<number>(`https://localhost:44353/v1/users`, user);
     }
+
+    getUsers(): Observable<any> {
+        return this.http.get<any>(`https://localhost:44353/v1/users`);
+    }
 }
