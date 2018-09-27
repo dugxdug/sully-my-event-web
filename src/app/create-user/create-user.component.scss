@@ -17,12 +17,13 @@
     border-radius: 10px;
     padding-top: 15px;
     width: 100%;
-    height: 575px;
+    height: 615px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .button-width {
     width: 455px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .form-margin {
@@ -30,17 +31,6 @@
     margin-right: 25px;
 }
 
-.title-style {
-    font-weight: bold;
-    font-size: 32px;
-}
-
-.sub-text {
-    font-weight: 600;
-    font-size: 16px;
-}
-
 .align-center {
     text-align: center;
-    margin-bottom: 25px;
 }
