@@ -4,6 +4,7 @@ import { HttpHelperService } from './http-helper.service';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Email } from '../models/email.model';
 
 @Injectable()
 export class EventsService {
@@ -94,5 +95,9 @@ export class EventsService {
 
   createEvent(userId: number, event: any): Observable<any> {
     return this.http.post(`${environment.ApiBaseUrl}/users/${userId}/events/`, event);
+  }
+
+  email(email: Email) {
+    return this.http.post(`${environment.ApiBaseUrl}/email/`, email);
   }
 }
