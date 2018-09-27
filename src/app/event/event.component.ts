@@ -98,6 +98,8 @@ export class EventComponent implements OnInit {
   getRestaurants() {
     const filterData = new LocationFilter(this.location, this.selectedPrices.join(), Math.floor(this.radius / .00062137), this.searchTerm);
     this.yelpService.searchBusinesses(filterData).subscribe((results) => {
+      const filteredResults = results.businesses.filter(x => this.selectedStars.includes(Math.floor(x.rating)));
+      results.businesses = filteredResults;
       this.restaurantResults = results;
       this.activeIndex = 2;
     });
