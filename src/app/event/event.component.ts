@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MenuItem } from 'primeng/primeng';
 import { YelpService } from '../core/yelp.service';
 import { LocationFilter } from '../models/location-filter.model';
-<<<<<<< Updated upstream
-import { YelpResult, YelpResults } from '../models/yelp-results.model';
-=======
 import { YelpResults } from '../models/yelp-results.model';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-event',
