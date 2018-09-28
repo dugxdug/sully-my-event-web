@@ -2,9 +2,9 @@
 @import '../../scss/styles.scss';
 
 .card:hover {
-  background-color: #79B791;
+  box-shadow: 0 4px 8px #79B791, 0 4px 8px #79B791;
 }
 
 .card-selected {
-  background-color: #79B791;
+  box-shadow: 0 3px 6px #79B791, 0 3px 6px #79B791;
 }
