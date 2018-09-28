@@ -6,7 +6,7 @@
         <a routerLink="/event"><button class="btn btn-primary float-sm-right">Sully Sully</button></a>
         <h1 class="display-4 py-3">Next Event</h1>
         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-          <div class="card-img-left flex-auto d-none d-lg-block" *ngIf="nextEvent.hasVoted && nextEvent.imageUrl == null">
+          <div class="card-img-left flex-auto d-none d-lg-block" *ngIf="nextEvent.hasVoted && !nextEvent.imageUrl">
             <h5 class="ml-2 mt-2">Poll Results</h5>
             <p-chart type="doughnut" [data]="nextEvent.pollResults"></p-chart>
           </div>
@@ -30,7 +30,7 @@
         <div class="p-grid">
           <div class="p-col-3" *ngFor="let event of events">
             <div class="card">
-              <div class="card-img-top" *ngIf="event.hasVoted && event.imageUrl == null">
+              <div class="card-img-top" *ngIf="event.hasVoted && !event.imageUrl">
                 <h5 class="ml-2 mt-2">Poll Results</h5>
                 <p-chart type="doughnut" [data]="event.pollResults"></p-chart>
               </div>
