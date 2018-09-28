@@ -37,8 +37,8 @@ export class PollComponent implements OnInit {
         this.closedPoll = true;
       } else {
         this.eventCreator = event.createdBy;
-        this.loaded = true;
       }
+      this.loaded = true;
     });
     });
   }

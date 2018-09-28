@@ -98,10 +98,7 @@ export class EventComponent implements OnInit {
     this.eventService.createEvent(1, event).subscribe((id) => {
       const emailObject = new Email('sulliedhackathon@gmail.com', 'You have been sullied',
         `${environment.emailMessage}  http://localhost:1111/events/${id}/poll`, this.selectedUsers);
-        const emailEventObject = new EmailEvent('sulliedhackathon@gmail.com', 'You have been sullied',
-        `Please accept this meeting on our behalf`, this.selectedUsers, 'test location', this.date);
       this.eventService.email(emailObject).subscribe();
-      this.eventService.emailEvent(emailEventObject).subscribe();
       this.router.navigate(['']);
     });
   }
