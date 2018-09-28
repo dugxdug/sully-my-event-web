@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem, MenuItem } from 'primeng/primeng';
+import { SelectItem, MenuItem, MessageService } from 'primeng/primeng';
 import { YelpService } from '../core/yelp.service';
 import { LocationFilter } from '../models/location-filter.model';
 import { YelpResult, YelpResults } from '../models/yelp-results.model';
@@ -8,11 +8,14 @@ import { EventsService } from '../core/events.service';
 import { SelectedLocation } from '../models/location.model';
 import { Router } from '@angular/router';
 import { Email } from '../models/email.model';
+import { EmailEvent } from '../models/email-event.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  styleUrls: ['./event.component.scss'],
+  providers: [MessageService]
 })
 export class EventComponent implements OnInit {
   users = Array<SelectItem>();
@@ -38,7 +41,8 @@ export class EventComponent implements OnInit {
   constructor(private yelpService: YelpService,
     private userService: UserService,
     private eventService: EventsService,
-    private router: Router) { }
+    private router: Router,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe((userList) => {
@@ -93,7 +97,7 @@ export class EventComponent implements OnInit {
     };
     this.eventService.createEvent(1, event).subscribe((id) => {
       const emailObject = new Email('sulliedhackathon@gmail.com', 'You have been sullied',
-        `http://localhost:1111/events/${id}/poll`, this.selectedUsers);
+        `${environment.emailMessage}  http://localhost:1111/events/${id}/poll`, this.selectedUsers);
       this.eventService.email(emailObject).subscribe();
       this.router.navigate(['']);
     });
@@ -113,17 +117,40 @@ export class EventComponent implements OnInit {
       this.activeIndex = 2;
     });
   }
+  previous(index: number) {
+    this.selectedCards = [];
+    this.eventLocations = [];
+    this.activeIndex = index;
+  }
 
   cardClicked(result: any) {
-    if (!this.eventLocations.find(x => x.yelpId === result.id)) {
-      this.eventLocations.push(
-        new SelectedLocation(result.id, result.price, result.rating, result.name, result.location.address1, result.image_url, result.url));
+      if (!this.eventLocations.find(x => x.yelpId === result.id)) {
+        if (this.eventLocations.length < 8) {
+        this.eventLocations.push(
+          new SelectedLocation(
+            result.id,
+            result.price,
+            result.rating,
+            result.name,
+            result.location.address1,
+            result.image_url,
+            result.url));
+      }
     }
+      if (this.selectedCards.find(x => x === result.id)) {
+        this.selectedCards.splice(this.selectedCards.findIndex(x => x === result.id));
+      } else {
+        if (this.selectedCards.length < 8) {
+        this.selectedCards.push(result.id);
+        } else {
+          this.messageService.add(
+            {
+              severity: 'error',
+              summary: 'Limit of 8 options',
+              detail: 'You can only select a maximum of 8 options.'
+            });
+        }
+      }
 
-    if (this.selectedCards.find(x => x === result.id)) {
-      this.selectedCards.splice(this.selectedCards.findIndex(x => x === result.id));
-    } else {
-      this.selectedCards.push(result.id);
-    }
   }
 }

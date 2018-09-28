@@ -4,15 +4,24 @@ import { HttpHelperService } from './http-helper.service';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import {map} from 'rxjs/operators';
+import { Event } from '../models/events.model';
 import { Email } from '../models/email.model';
+import { EmailEvent } from '../models/email-event.model';
 
 @Injectable()
 export class EventsService {
 
   constructor(private http: HttpClient, private httpHelper: HttpHelperService) { }
 
-  getEvents(userId: number): Observable<any> {
-    return this.http.get(`${environment.ApiBaseUrl}/users/${userId}/events`);
+  getEvents(userId: number): Observable<Event[]> {
+    return this.http.get<Event[]>(`${environment.ApiBaseUrl}/users/${userId}/events`).pipe(map(events => {
+      events.map(event => {
+        event.pollResults = this.getPollData(event);
+        return event;
+      });
+      return events;
+    }));
     // return of([
     //   {
     //     id: 1,
@@ -97,7 +106,35 @@ export class EventsService {
     return this.http.post(`${environment.ApiBaseUrl}/users/${userId}/events/`, event);
   }
 
+  getPollResults(eventId: number): Observable<{locationName: string, numberOfVotes: number}[]> {
+    return this.http.get<{locationName: string, numberOfVotes: number}[]>(`${environment.ApiBaseUrl}/events/${eventId}/poll-results`);
+  }
+
+  private getPollData(event: any) {
+    const data = {labels: [], datasets: []};
+    const values = [];
+    event.pollResults.map(result => {
+      data['labels'].push(result.locationName);
+      values.push(result.numberOfVotes);
+    });
+    data.datasets.push({data: values, backgroundColor: [
+      '#79B791',
+      '#7CC6FE',
+      '#D88373',
+      '#CFD186',
+      '#FF8C00',
+      '#EDF4ED',
+      '#435058',
+      '#ABD1B5',
+      '#CCE3DE'
+    ]});
+      return data;
+}
   email(email: Email) {
     return this.http.post(`${environment.ApiBaseUrl}/email/`, email);
+  }
+
+  emailEvent(email: EmailEvent) {
+    return this.http.put(`${environment.ApiBaseUrl}/email/`, email);
   }
 }

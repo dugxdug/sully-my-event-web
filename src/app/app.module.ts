@@ -30,6 +30,7 @@ import {StepsModule} from 'primeng/steps';
 import {ToastModule} from 'primeng/toast';
 import { CreateUserComponent } from 'src/app/create-user/create-user.component';
 import { CoreService } from './core/core.service';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CoreService } from './core/core.service';
     InputTextModule,
     StepsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    ChartModule
   ],
   providers: [YelpService, HttpHelperService, UserService, EventsService, CoreService],
   bootstrap: [AppComponent]

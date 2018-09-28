@@ -1,39 +1,43 @@
-<div class="text-center mt-5" *ngIf="this.loaded && this.eventLocations.length > 0">
-<h2>{{this.eventCreator}} Wants To Know What You Would Like To Eat...</h2>
-</div>
-<div class="p-grid p-justify-center m-5">
-  <div class="p-col-12 p-md-6 p-lg-4 p-xl-3" *ngFor="let event of this.eventLocations">
-    <p-card>
-      <p-header>
-        <img [src]="event.imageUrl" style="height: 300px; object-fit: cover;"/>
-      </p-header>
-      <div class="mb-5" style="min-height: 100px">
-        <div class="ui-card-title float-left"><a class="primary-title" href="{{event.url}}" target="_blank">{{event.name}}</a></div>
-        <div class="event-price">{{event.price}}</div>
-        <div class="clearfix"></div>
-        <div class="ui-card-subtitle h-25">
-            {{event.address}}
+
+<div *ngIf="this.loaded">
+    <div class="text-center mt-5" *ngIf="this.eventLocations.length > 0">
+        <h2>{{this.eventCreator}} Wants To Know What You Would Like To Eat...</h2>
         </div>
-      </div>
-      <p-footer>
-            <div class="text-center">
-                <button type="button" class="btn btn-primary" (click)="vote($event, event.id)">Vote</button>
-            </div>
-      </p-footer>
-    </p-card>
-  </div>
+        <div class="p-grid p-justify-center m-5">
+          <div class="p-col-12 p-md-6 p-lg-4 p-xl-3" *ngFor="let event of this.eventLocations">
+            <p-card>
+              <p-header>
+                <img [src]="event.imageUrl" style="height: 300px; object-fit: cover;"/>
+              </p-header>
+              <div class="mb-5" style="min-height: 100px">
+                <div class="ui-card-title float-left"><a class="primary-title" href="{{event.url}}" target="_blank">{{event.name}}</a></div>
+                <div class="event-price">{{event.price}}</div>
+                <div class="clearfix"></div>
+                <div class="ui-card-subtitle h-25">
+                    {{event.address}}
+                </div>
+              </div>
+              <p-footer>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" (click)="vote($event, event.id)">Vote</button>
+                    </div>
+              </p-footer>
+            </p-card>
+          </div>
+        </div>
+        <div *ngIf="this.eventLocations.length === 0" class="text-center mt-5">
+            <img src="../../assets/logo.png" height="300px" class="mb-5">
+            <h2>Looks like you already voted.</h2>
+            <p>
+              <a [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a>
+            </p>
+        </div>
+        <div *ngIf="this.closedPoll" class="text-center mt-5">
+            <img src="../../assets/logo.png" height="300px" class="mb-5">
+            <h2>Oops...Looks like this poll already closed :(</h2>
+            <p>
+              <a class="primary-title" [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a>
+            </p>
+        </div>
 </div>
-<div *ngIf="this.eventLocations.length === 0" class="text-center mt-5">
-    <img src="../../assets/logo.png" height="300px" class="mb-5">
-    <h2>Looks like you already voted.</h2>
-    <p>
-      <a [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a>
-    </p>
-</div>
-<div *ngIf="this.closedPoll" class="text-center mt-5">
-    <img src="../../assets/logo.png" height="300px" class="mb-5">
-    <h2>Oops...Looks like this poll already closed :(</h2>
-    <p>
-      <a class="primary-title" [routerLink]="['']" routerLinkActive="router-link-active">Back to Dashboard</a>
-    </p>
-</div>
+

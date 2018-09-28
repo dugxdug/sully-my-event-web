@@ -28,16 +28,16 @@ const routes: Routes = [
         path: 'events/:id/poll',
         component: PollComponent,
         pathMatch: 'full'
-      },
-      {
-        path: 'create',
-        component: CreateUserComponent,
       }
     ]
   },
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'create',
+    component: CreateUserComponent,
   }
 ];
 

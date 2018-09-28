@@ -37,15 +37,16 @@ export class PollComponent implements OnInit {
         this.closedPoll = true;
       } else {
         this.eventCreator = event.createdBy;
-        this.loaded = true;
       }
+      this.loaded = true;
     });
     });
   }
 
   vote($event, locationId: string) {
-    this.eventsService.updateEventWithVote(this.userId, this.eventId, locationId).subscribe();
-    this.router.navigate([''], {queryParams: {voted: true}});
+    this.eventsService.updateEventWithVote(this.userId, this.eventId, locationId).subscribe(success => {
+      this.router.navigate([''], {queryParams: {voted: true}});
+    });
   }
 
 }
