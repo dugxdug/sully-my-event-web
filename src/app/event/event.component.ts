@@ -7,6 +7,7 @@ import { UserService } from '../core/user.service';
 import { EventsService } from '../core/events.service';
 import { SelectedLocation } from '../models/location.model';
 import { Router } from '@angular/router';
+import { Email } from '../models/email.model';
 
 @Component({
   selector: 'app-event',
@@ -92,7 +93,10 @@ export class EventComponent implements OnInit {
       createdById: localStorage.getItem('userId'),
       createdBy: 'test'
     };
-    this.eventService.createEvent(1, event).subscribe(() => {
+    this.eventService.createEvent(1, event).subscribe((id) => {
+      const emailObject = new Email('sulliedhackathon@gmail.com', 'You have been sullied',
+        `http://localhost:1111/events/${id}/poll`, this.selectedUsers);
+      this.eventService.email(emailObject).subscribe();
       this.router.navigate(['']);
     });
   }
@@ -100,7 +104,14 @@ export class EventComponent implements OnInit {
   getRestaurants() {
     const filterData = new LocationFilter(this.location, this.selectedPrices.join(), Math.floor(this.radius / .00062137), this.searchTerm);
     this.yelpService.searchBusinesses(filterData).subscribe((results) => {
-      this.restaurantResults = results;
+      console.log(this.selectedStars);
+      if (this.selectedStars.length > 0) {
+        const filteredResults = results.businesses.filter(x => this.selectedStars.includes(Math.floor(x.rating)));
+        results.businesses = filteredResults;
+        this.restaurantResults = results;
+      } else {
+        this.restaurantResults = results;
+      }
       this.activeIndex = 2;
     });
   }

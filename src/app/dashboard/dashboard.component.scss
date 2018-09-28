@@ -27,3 +27,9 @@
   border: 1px solid rgba(0,0,0,.04)!important;
   box-shadow: 0 1px 7px rgba(0,0,0,.05);
 }
+
+.justify-content-space-between {
+    display: flex;
+    justify-content: space-between;
+
+}

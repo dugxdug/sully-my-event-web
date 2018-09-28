@@ -6,12 +6,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PollComponent } from './poll/poll.component';
 import { EventComponent } from './event/event.component';
 import { CreateUserComponent } from 'src/app/create-user/create-user.component';
+import { AuthGuard } from 'src/app/core/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

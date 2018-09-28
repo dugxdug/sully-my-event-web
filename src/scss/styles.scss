@@ -73,6 +73,11 @@ body {
   border-color:  #79B791!important;
 }
 
+.btn-secondary {
+  background-color:  $background-dark !important;
+  border-color:  $background-dark!important;
+}
+
 .btn-primary-border {
   background-color: $background-dark;
   border-color: #79B791!important;
@@ -93,27 +98,40 @@ body .ui-toast .ui-toast-message.ui-toast-message-success .ui-toast-close-icon {
   color: white !important;
 }
 
-.text-lg {
+.text-lg, h2, h1 {
   font-weight: bold;
   font-size: 32px;
   font-family: 'Audiowide';
   letter-spacing: 2px;
 }
 
-.text-md {
+.text-md, h3, h4 {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 26px;
   font-family: 'Audiowide';
   letter-spacing: 2px;
 }
 
-.text-sm {
-  font-weight: 400;
-  font-size: 18px;
+.text-sm, h5, p {
+  font-weight: 500;
+  font-size: 22px;
   font-family: 'Audiowide';
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .card {
   box-shadow: 0 1px 7px rgba(0,0,0,.05);
+}
+
+.card-body {
+  height: 225px;
+}
+
+a {
+  color: #79B791;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
 }
