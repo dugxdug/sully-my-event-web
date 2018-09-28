@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  ApiBaseUrl: 'https://localhost:44353/v1'
+  ApiBaseUrl: 'https://localhost:44353/v1',
+  emailMessage: 'You have been invited to cast your vote for your FAVORITE food option!'
 };
 
 /*

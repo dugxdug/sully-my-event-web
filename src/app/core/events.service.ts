@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import { Event } from '../models/events.model';
 import { Email } from '../models/email.model';
+import { EmailEvent } from '../models/email-event.model';
 
 @Injectable()
 export class EventsService {
@@ -131,5 +132,9 @@ export class EventsService {
 }
   email(email: Email) {
     return this.http.post(`${environment.ApiBaseUrl}/email/`, email);
+  }
+
+  emailEvent(email: EmailEvent) {
+    return this.http.put(`${environment.ApiBaseUrl}/email/`, email);
   }
 }

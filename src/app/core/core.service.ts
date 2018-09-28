@@ -22,5 +22,6 @@ export class CoreService {
   logUserOut(): void {
     localStorage.removeItem('userId');
     localStorage.removeItem('fullName');
+    localStorage.clear();
   }
 }
