@@ -133,8 +133,8 @@ export class EventComponent implements OnInit {
           this.messageService.add(
             {
               severity: 'error',
-              summary: 'Limit of 5 options',
-              detail: 'You can only select a maximum of 5 options.'
+              summary: 'Limit of 8 options',
+              detail: 'You can only select a maximum of 8 options.'
             });
         }
       }

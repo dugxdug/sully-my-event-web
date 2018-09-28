@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   events = [];
   userId;
   navEnd: Observable<NavigationEnd>;
+  pollResults: {locationName: string, numberOfVotes: number}[] = [];
+  loaded = false;
   constructor(
     private coreService: CoreService,
     private eventsService: EventsService,
@@ -62,6 +64,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       });
       this.nextEvent = events[0];
       this.events = events.slice(1);
+      this.loaded = true;
     });
   }
 
